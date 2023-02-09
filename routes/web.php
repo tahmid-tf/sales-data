@@ -40,6 +40,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 //    --------------------------- Sales Export ---------------------------
 
+//    --------------------------- logout ---------------------------
+
+    Route::get('log_out', function (){
+        \auth()->logout();
+        return redirect("/");
+    })->name('log_out');
+
+//    --------------------------- logout ---------------------------
+
+
+
 
 });
 
@@ -59,6 +70,5 @@ Route::prefix('api')->middleware('auth')->group(function () {
 
 
 });
-
 
 // ------------------------------------------------------ API DATA ------------------------------------------------------
