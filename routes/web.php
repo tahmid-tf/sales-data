@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -24,13 +25,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // ------------------------------------------------------ Panel ------------------------------------------------------
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 
 //    --------------------------- Dashboard ---------------------------
 
-    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
 
 //    --------------------------- Dashboard ---------------------------
+
+
+//    --------------------------- Sales Export ---------------------------
+
+    Route::get('exportData', [\App\Http\Controllers\Admin\DashboardController::class,'exportData'])->name('exportData');
+
+//    --------------------------- Sales Export ---------------------------
 
 
 });
@@ -42,7 +50,7 @@ Route::prefix('admin')->group(function () {
 
 // ------------------------------------------------------ API DATA ------------------------------------------------------
 
-Route::prefix('api')->group(function () {
+Route::prefix('api')->middleware('auth')->group(function () {
 
 
     Route::get('earning', [\App\Http\Controllers\Admin\DashboardController::class,'earningApi'])->name("earningsAPI");

@@ -22,6 +22,7 @@ class CreateSalesTable extends Migration
             $table->string('payment_type');
             $table->string('address');
             $table->string('status');
+            $table->string('region');
             $table->string('transaction_id');
             $table->timestamps();
         });
