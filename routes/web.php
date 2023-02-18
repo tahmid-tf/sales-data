@@ -29,27 +29,25 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 //    --------------------------- Dashboard ---------------------------
 
-    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
+    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
 //    --------------------------- Dashboard ---------------------------
 
 
 //    --------------------------- Sales Export ---------------------------
 
-    Route::get('exportData', [\App\Http\Controllers\Admin\DashboardController::class,'exportData'])->name('exportData');
+    Route::get('exportData', [\App\Http\Controllers\Admin\DashboardController::class, 'exportData'])->name('exportData');
 
 //    --------------------------- Sales Export ---------------------------
 
 //    --------------------------- logout ---------------------------
 
-    Route::get('log_out', function (){
+    Route::get('log_out', function () {
         \auth()->logout();
         return redirect("/");
     })->name('log_out');
 
 //    --------------------------- logout ---------------------------
-
-
 
 
 });
@@ -58,16 +56,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // ------------------------------------------------------ Panel ------------------------------------------------------
 
 
-
 // ------------------------------------------------------ API DATA ------------------------------------------------------
 
 Route::prefix('api')->middleware('auth')->group(function () {
 
-
-    Route::get('earning', [\App\Http\Controllers\Admin\DashboardController::class,'earningApi'])->name("earningsAPI");
-    Route::get('revenue', [\App\Http\Controllers\Admin\DashboardController::class,'revenueApi'])->name("revenueAPI");
-
-
+    Route::get('earning', [\App\Http\Controllers\Admin\DashboardController::class, 'earningApi'])->name("earningsAPI");
+    Route::get('revenue', [\App\Http\Controllers\Admin\DashboardController::class, 'revenueApi'])->name("revenueAPI");
 
 });
 
